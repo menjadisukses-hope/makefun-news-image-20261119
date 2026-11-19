@@ -12,6 +12,10 @@ BLUE = (20, 55, 110)
 GREY = (90, 90, 90)
 LIGHT = (232, 226, 210)
 
+# Outlets consulted while researching the day's stories.
+SOURCES = ("Reuters", "AP", "AFP", "Al Jazeera", "IAEA", "IMD")
+EDITION_LINE = "Thursday 19 November 2026"
+
 SERIF_B = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
 SANS_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -175,8 +179,9 @@ for b in briefs:
     yy += 17
 
 d.rectangle([0, H - 28, W, H], fill=INK)
-text(W // 2, H - 22, "All the day's news, in one image — Thursday 19 November 2026  •  Sources: Reuters, AP, AFP, Al Jazeera, IAEA, IMD",
-     F(SANS, 11), (255, 255, 255), "ma")
+footer = ("All the day's news, in one image — " + EDITION_LINE +
+          "  •  Sources: " + ", ".join(SOURCES))
+text(W // 2, H - 22, footer, F(SANS, 11), (255, 255, 255), "ma")
 
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "news.png")
 img.save(out, optimize=True)
